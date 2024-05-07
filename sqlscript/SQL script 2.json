@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 2",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'challenge-2_challenge1_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [challenge-2_challenge1_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION = 'abfss://challenge-2@challenge1.dfs.core.windows.net' \n\t)\nGO\n\nCREATE EXTERNAL TABLE [dbo].[populations] (\n\t[SortOrder] nvarchar(4000),\n\t[LocID] nvarchar(4000),\n\t[Notes] nvarchar(4000),\n\t[ISO3_code] nvarchar(4000),\n\t[ISO2_code] nvarchar(4000),\n\t[SDMX_code] nvarchar(4000),\n\t[LocTypeID] nvarchar(4000),\n\t[LocTypeName] nvarchar(4000),\n\t[ParentID] nvarchar(4000),\n\t[Location] nvarchar(4000),\n\t[VarID] nvarchar(4000),\n\t[Variant] nvarchar(4000),\n\t[Time] nvarchar(4000),\n\t[TPopulation1Jan] nvarchar(4000),\n\t[TPopulation1July] nvarchar(4000),\n\t[TPopulationMale1July] nvarchar(4000),\n\t[TPopulationFemale1July] nvarchar(4000),\n\t[PopDensity] nvarchar(4000),\n\t[PopSexRatio] nvarchar(4000),\n\t[MedianAgePop] nvarchar(4000),\n\t[NatChange] nvarchar(4000),\n\t[NatChangeRT] nvarchar(4000),\n\t[PopChange] nvarchar(4000),\n\t[PopGrowthRate] nvarchar(4000),\n\t[DoublingTime] nvarchar(4000),\n\t[Births] nvarchar(4000),\n\t[Births1519] nvarchar(4000),\n\t[CBR] nvarchar(4000),\n\t[TFR] nvarchar(4000),\n\t[NRR] nvarchar(4000),\n\t[MAC] nvarchar(4000),\n\t[SRB] nvarchar(4000),\n\t[Deaths] nvarchar(4000),\n\t[DeathsMale] nvarchar(4000),\n\t[DeathsFemale] nvarchar(4000),\n\t[CDR] nvarchar(4000),\n\t[LEx] nvarchar(4000),\n\t[LExMale] nvarchar(4000),\n\t[LExFemale] nvarchar(4000),\n\t[LE15] nvarchar(4000),\n\t[LE15Male] nvarchar(4000),\n\t[LE15Female] nvarchar(4000),\n\t[LE65] nvarchar(4000),\n\t[LE65Male] nvarchar(4000),\n\t[LE65Female] nvarchar(4000),\n\t[LE80] nvarchar(4000),\n\t[LE80Male] nvarchar(4000),\n\t[LE80Female] nvarchar(4000),\n\t[InfantDeaths] nvarchar(4000),\n\t[IMR] nvarchar(4000),\n\t[LBsurvivingAge1] nvarchar(4000),\n\t[Under5Deaths] nvarchar(4000),\n\t[Q5] nvarchar(4000),\n\t[Q0040] nvarchar(4000),\n\t[Q0040Male] nvarchar(4000),\n\t[Q0040Female] nvarchar(4000),\n\t[Q0060] nvarchar(4000),\n\t[Q0060Male] nvarchar(4000),\n\t[Q0060Female] nvarchar(4000),\n\t[Q1550] nvarchar(4000),\n\t[Q1550Male] nvarchar(4000),\n\t[Q1550Female] nvarchar(4000),\n\t[Q1560] nvarchar(4000),\n\t[Q1560Male] nvarchar(4000),\n\t[Q1560Female] nvarchar(4000),\n\t[NetMigrations] nvarchar(4000),\n\t[CNMR] nvarchar(4000)\n\t)\n\tWITH (\n\tLOCATION = 'population.parquet',\n\tDATA_SOURCE = [challenge-2_challenge1_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n\n\nSELECT TOP 100 * FROM [dbo].[populations]\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "team4datebase",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
