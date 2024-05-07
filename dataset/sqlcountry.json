@@ -1,0 +1,17 @@
+{
+	"name": "sqlcountry",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SHIRSQLserver",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Country"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,29 @@
+{
+	"name": "DelimitedText2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "WPP2022_Demographic_Indicators_notes.csv",
+				"container": "population-container"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "PK\u0003\u0004\u0014\u0000\u0000\u0000\b\u0000'Z\u0002U�\u0006E\u0002xU|\u0000K�8\u0001)\u0000\u0000\u0000WPP2022_Demographic_Indicators_Medium.csv��ۮ�W��wo@o�H���R]%\u0019m4K\u0012�d�Π�Tw\u0001դ�b�����m��S",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

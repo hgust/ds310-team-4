@@ -1,0 +1,120 @@
+{
+	"name": "dates data flow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "datessource",
+						"type": "DatasetReference"
+					},
+					"name": "sourcedates"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "cases_parquet",
+						"type": "DatasetReference"
+					},
+					"name": "sink1",
+					"rejectedDataLinkedService": {
+						"referenceName": "AzureDataLakeStorage1",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          DateKey as integer,",
+				"          FullDate as date,",
+				"          isWeekDay as boolean,",
+				"          DayOfWeek as integer,",
+				"          DayOfMonth as integer,",
+				"          DayOfQuarter as integer,",
+				"          DayOfYear as integer,",
+				"          DayName as string,",
+				"          WeekOfYear as integer,",
+				"          WeekName as string,",
+				"          MonthOfYear as integer,",
+				"          MonthName as string,",
+				"          CalendarQuarter as integer,",
+				"          CalendarQuarterName as string,",
+				"          CalendarYear as integer,",
+				"          FiscalMonth as integer,",
+				"          FiscalMonthName as string,",
+				"          FiscalQuarter as integer,",
+				"          FiscalQuarterName as string,",
+				"          FiscalYear as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> sourcedates",
+				"sourcedates sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          CountryName as string,",
+				"          CountryCode as string,",
+				"          RegionName as string,",
+				"          RegionCode as string,",
+				"          Jurisdiction as string,",
+				"          Date as string,",
+				"          C1_School_closing as integer,",
+				"          C1_Flag as integer,",
+				"          C2_Workplace_closing as integer,",
+				"          C2_Flag as integer,",
+				"          C3_Cancel_public_events as integer,",
+				"          C3_Flag as integer,",
+				"          C4_Restrictions_on_gatherings as integer,",
+				"          C4_Flag as integer,",
+				"          C5_Close_public_transport as integer,",
+				"          C5_Flag as integer,",
+				"          C6_Stay_at_home_requirements as integer,",
+				"          C6_Flag as integer,",
+				"          C7_Restrictions_on_internal_movement as integer,",
+				"          C7_Flag as integer,",
+				"          C8_International_travel_controls as integer,",
+				"          E1_Income_support as integer,",
+				"          E1_Flag as integer,",
+				"          E2_Debt_contract_relief as integer,",
+				"          E3_Fiscal_measures as integer,",
+				"          E4_International_support as integer,",
+				"          H1_Public_information_campaigns as integer,",
+				"          H1_Flag as integer,",
+				"          H2_Testing_policy as integer,",
+				"          H3_Contact_tracing as integer,",
+				"          H4_Emergency_investment_in_healthcare as integer,",
+				"          H5_Investment_in_vaccines as integer,",
+				"          H6_Facial_Coverings as integer,",
+				"          H6_Flag as integer,",
+				"          H7_Vaccination_policy as integer,",
+				"          H7_Flag as integer,",
+				"          H8_Protection_of_elderly_people as integer,",
+				"          H8_Flag as integer,",
+				"          M1_Wildcard as integer,",
+				"          StringencyIndex as integer,",
+				"          StringencyIndexForDisplay as integer,",
+				"          StringencyLegacyIndex as integer,",
+				"          StringencyLegacyIndexForDisplay as integer,",
+				"          GovernmentResponseIndex as integer,",
+				"          GovernmentResponseIndexForDisplay as integer,",
+				"          ContainmentHealthIndex as integer,",
+				"          ContainmentHealthIndexForDisplay as integer,",
+				"          EconomicSupportIndex as integer,",
+				"          EconomicSupportIndexForDisplay as integer",
+				"     ),",
+				"     format: 'parquet',",
+				"     partitionFileNames:['dates.parquet'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}
